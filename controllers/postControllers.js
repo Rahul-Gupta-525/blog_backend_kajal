@@ -14,7 +14,7 @@ exports.createPost = async (req, res) => {
         }
 
         // Construct the photo URL
-        const imageUrl = `${req.protocol}://${req.get('host')}/uploads/${req.file.filename}`;
+        const imageUrl = process.env.base_url || `${req.protocol}://${req.get('host')}/uploads/${req.file.filename}`;
 
         const newPost = new postModel({
             userId,
