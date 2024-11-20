@@ -14,7 +14,7 @@ exports.createPost = async (req, res) => {
         }
 
         // Construct the photo URL
-        const imageUrl = `${process.env.base_url}/uploads/${req.file.filename}` ;
+        const imageUrl = `/uploads/${req.file.filename}` ;
 
         const newPost = new postModel({
             userId,
@@ -83,7 +83,7 @@ exports.updatePost = async (req, res) => {
         let imageUrl = existingPost.image; 
         if (req.file) {
             // Construct the new image URL
-            imageUrl = `${req.protocol}://${req.get('host')}/uploads/${req.file.filename}`;
+            imageUrl = `/uploads/${req.file.filename}`;
 
             // Remove the old image file from the server (if necessary)
             if (existingPost.image) {
@@ -120,6 +120,7 @@ exports.updateLikes = async (req, res) => {
     try {
         const { postid } = req.params;
         const userId = req.user.id;
+        console.log(userId)
         console.log("userId", userId)
         const blogPost = await postModel.findById(postid);
         if (!blogPost) {
