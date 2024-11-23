@@ -22,7 +22,7 @@ if (!fs.existsSync(uploadDir)) {
 const   server = http.createServer(app);
 const io = socketIo(server,
  { cors: {
-    origin: "http://localhost:5173", // Frontend URL
+    origin: "*",
     methods: ["GET", "POST"],
 },}
 )
