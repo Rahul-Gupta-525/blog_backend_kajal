@@ -164,7 +164,7 @@ exports.handleNewComment = async(io, socket, data) =>{
         await blogPost.save();
 
         // Emit new comment 
-        io.emit("commentAdded", { blogId, comment }); 
+        io.to(blogId).emit("commentAdded", { blogId, comment }); 
 
     } catch (err) {
         console.error(err);
